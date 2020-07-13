@@ -4,12 +4,22 @@ const mongoose = require('mongoose');
 const requireLogin = require('../middleware/requireLogin');
 const Post = mongoose.model("Post")
 
+router.get('/allpost', (req, res)=>{
+    Post.find().populate("postedBy").then(posts=>{
+        res.json({posts})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
-router.post('/createPost', requireLogin,(req, res)=>{
+router.post('/createpost', requireLogin,(req, res)=>{
     const {title, body} = req.body
     if(!title || !body){
         return res.status(422).json({error:"You're missing a title or body"})
     }
+    console.log(req.user)
+    req.user.password = undefined
     const post = new Post({
         title,
         body,

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const {ObjectID} = mongoose.Schema.Types
-
+const {ObjectId} = mongoose.Schema.Types
 const postSchema = new mongoose.Schema({
+    
     title:{
         type:String,
         required:true
@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
         default: "no photo"
     },
     postedBy:{
-        type:ObjectID,
+        type:ObjectId,
         ref:"User"
     }
 })

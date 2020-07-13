@@ -12,6 +12,7 @@ router.get('/', (req,res) => {
 })
 
 
+
 router.post('/signup', (req, res)=>{
     const { name, email, password } = req.body
     if (!email || !password || !name) {
